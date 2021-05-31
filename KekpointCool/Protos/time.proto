@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "KekpointCool";
+
+service Time {
+
+  rpc TimeIn (TimeRequest) returns (TimeOkReply);
+  rpc TimeOut (TimeRequest) returns (TimeOkReply);
+}
+
+message TimeOkReply{
+  string message = 1;
+}
+
+message TimeRequest{
+  string userid =  1;
+  google.protobuf.Timestamp timestamp = 2;
+  
+}

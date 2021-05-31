@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KekpointCool", "KekpointCool\KekpointCool.csproj", "{6B19035E-E33C-4DAD-BD06-8D4F828A04B3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F30456FA-47AA-4073-B57E-E12578847858} = {F30456FA-47AA-4073-B57E-E12578847858}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInfoService", "UserInfoService\UserInfoService.csproj", "{F30456FA-47AA-4073-B57E-E12578847858}"
 EndProject

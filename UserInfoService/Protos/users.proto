@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "UserInfoService";
+
+service UserInfo {
+
+  rpc GetUser (GetUserRequest) returns (GetUserReply);
+  rpc SetUser (SetUserRequest) returns (SetUserReply);
+}
+
+message GetUserReply{
+  string FirstName = 1;
+  string LastName = 2;
+  string MiddleName = 3;
+  string AccessLevel = 4;
+  google.protobuf.Timestamp DateOfBirth = 5;
+}
+
+message GetUserRequest{
+  string userid =  1;
+}
+
+message SetUserReply{
+  string message = 1;
+}
+message SetUserRequest{
+  string userid =  1;
+  string FirstName = 2;
+  string LastName = 3;
+  string MiddleName = 4;
+  string AccessLevel = 5;
+  google.protobuf.Timestamp DateOfBirth = 6;
+}

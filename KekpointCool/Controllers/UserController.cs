@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using KekpointCool.Models;
+using Grpc.Net.Client;
+
 
 namespace KekpointCool.Controllers
 {
@@ -13,11 +15,25 @@ namespace KekpointCool.Controllers
     public class UserController : ControllerBase
     {
         [HttpGet, HttpOptions]
-        [Route("~/getusers")]
-        public async Task<IActionResult> GetUsers()
+        [Route("~/getusers/{ID}")]
+        public async Task<IActionResult> GetUsers(Guid ID)
         {
+            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var client = new UserInfo.UserInfoClient(channel);
+            try
+            {
+                var reply = await client.GetUserAsync(new GetUserRequest
+                {
+                    
+                    Userid = ID.ToString()
+                });
+                return Ok(reply.FirstName);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
 
-            return Ok();
         }
 
         [HttpGet, HttpOptions]

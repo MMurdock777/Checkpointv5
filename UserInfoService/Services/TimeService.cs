@@ -23,5 +23,14 @@ namespace UserInfoService.Services
                 Message = "All good",
             });
         }
+
+        public override Task<TimeOkReply> TimeOut(TimeRequest request, ServerCallContext context)
+        {
+            // to do
+            return Task.FromResult(new TimeOkReply
+            {
+                Message = "All good",
+            });
+        }
     }
 }
