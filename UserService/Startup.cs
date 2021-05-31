@@ -7,9 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TimeControlService.Services;
 
-namespace TimeControlService
+namespace UserService
 {
     public class Startup
     {
@@ -32,7 +31,7 @@ namespace TimeControlService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<TimeService>();
+                endpoints.MapGrpcService<UserInfo>();
 
                 endpoints.MapGet("/", async context =>
                 {

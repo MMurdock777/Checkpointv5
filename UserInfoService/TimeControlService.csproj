@@ -8,17 +8,16 @@
 
   <ItemGroup>
     <None Remove="Protos\time.proto" />
-    <None Remove="Protos\users.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\time.proto" />
-    <Protobuf Include="Protos\users.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
 </Project>

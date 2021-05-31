@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
-option csharp_namespace = "UserInfoService";
+option csharp_namespace = "UserService";
 
 service UserInfo {
 

@@ -22,13 +22,14 @@ namespace KekpointCool.Controllers
             {
                 var reply = await client.TimeInAsync(new TimeRequest { Timestamp = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc)),
                     Userid = ID.ToString() });
+
+                return Ok(reply.Message);
             }
             catch(Exception e)
             {
                 return Ok(e.Message);
             }
            
-            return Ok();
             
         }
 
@@ -45,12 +46,13 @@ namespace KekpointCool.Controllers
                     Timestamp = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc)),
                     Userid = ID.ToString()
                 });
+
+                return Ok(reply.Message);
             }
             catch (Exception e)
             {
                 return Ok(e.Message);
             }
-            return Ok();
         }
     }
 }
