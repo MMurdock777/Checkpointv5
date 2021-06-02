@@ -19,7 +19,6 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "KekpointCool.dll"]
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 5000
 EXPOSE 5001
@@ -40,8 +39,6 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TimeControlService.dll"]
 
-
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 5002
 EXPOSE 5003
