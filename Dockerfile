@@ -23,7 +23,6 @@ WORKDIR /app
 EXPOSE 5000
 EXPOSE 5001
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["TimeControlService/TimeControlService.csproj", "TimeControlService/"]
 RUN dotnet restore "TimeControlService/TimeControlService.csproj"
@@ -43,7 +42,6 @@ WORKDIR /app
 EXPOSE 5002
 EXPOSE 5003
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["UserService/UserService.csproj", "UserService/"]
 RUN dotnet restore "UserService/UserService.csproj"
