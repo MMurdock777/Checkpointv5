@@ -1,6 +1,7 @@
 ﻿using Grpc.Net.Client;
 using KekpointCool.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Threading.Tasks;
 
@@ -13,9 +14,10 @@ namespace KekpointCool.Controllers
     {
         [HttpGet, HttpOptions]
         [Route("~/getusers/{ID}")]
+        [Authorize]
         public async Task<IActionResult> GetUsers(Guid ID)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("https://localhost:5003");
             var client = new UserInfo.UserInfoClient(channel);
             try
             {
@@ -42,9 +44,10 @@ namespace KekpointCool.Controllers
 
         [HttpPost, HttpOptions]
         [Route("~/setuser")]
+        [Authorize]
         public async Task<IActionResult> SetUser([FromBody] User user)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("https://localhost:5003");
             var client = new UserInfo.UserInfoClient(channel);
             try
             {
@@ -67,6 +70,7 @@ namespace KekpointCool.Controllers
 
         [HttpPost, HttpOptions]
         [Route("~/{ID}/setphoto")]
+        [Authorize]
         public async Task<IActionResult> SetPhoto(Guid ID, [FromBody] byte[] Photo)
         {
             //var channel = GrpcChannel.ForAddress("https://localhost:5001");

@@ -8,6 +8,7 @@ using KekpointCool.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Grpc.Net.Client;
 
 namespace KekpointCool.Controllers
 {
@@ -31,51 +32,44 @@ namespace KekpointCool.Controllers
 
         [HttpPost, HttpOptions]
         [Route("~/login")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody]LoginData data)
         {
             if (ModelState.IsValid)
             {
-                string username = null;
-                //using (var connection = new SqlConnection("Server = 192.168.1.83; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
-                //{
-                //    var command = new SqlCommand($"SELECT * FROM dbo.UserInfo WHERE ID = '{request.Userid}'", connection);
-                //    command.Connection.Open();
-                //    using (SqlDataReader reader = command.ExecuteReader())
-                //    {
-                //        if (reader.HasRows)
-                //        {
-                //            if (reader.Read())
-                //            {
-                //            }
-                //        }
-                //    }
-                //}
-                if (username != null)
+  
+                var channel = GrpcChannel.ForAddress("https://localhost:5003");
+                var client = new UserInfo.UserInfoClient(channel);
+                try
                 {
-                    await Authenticate(username);
-                    return RedirectToAction("Index", "Home");
+                    var reply = await client.LoginAsync(new LoginRequest
+                    {
+                        Login = data.Login,
+                        Password = data.Password
+                    });
+                    if (reply.Success)
+                    {
+                        await Authenticate(data.Login); 
+                        return Ok();
+                    }
+                    return Ok("Authentication failed");
+
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                catch (Exception e)
+                {
+                    return Ok(e.Message);
+                }
             }
             return Ok();
         }
 
         [HttpPost, HttpOptions]
         [Route("~/logout")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Ok();
         }
 
-        [HttpPost, HttpOptions]
-        [Route("~/register")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([FromBody] LoginData Data)
-        {
-            return Ok();
-        }
 
     }
 }

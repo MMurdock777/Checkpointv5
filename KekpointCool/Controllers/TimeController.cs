@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Grpc.Net.Client;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KekpointCool.Controllers
 {
@@ -14,6 +15,7 @@ namespace KekpointCool.Controllers
     {
         [HttpGet, HttpOptions]
         [Route("~/timein/{ID}")]
+        [Authorize]
         public async Task<IActionResult> Timein(Guid ID)
         {
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -35,6 +37,7 @@ namespace KekpointCool.Controllers
 
         [HttpGet, HttpOptions]
         [Route("~/timeout/{ID}")]
+        [Authorize]
         public async Task<IActionResult> Timeout(Guid ID)
         {
             var channel = GrpcChannel.ForAddress("https://localhost:5001");

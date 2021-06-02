@@ -5,12 +5,13 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KekpointCool", "KekpointCool\KekpointCool.csproj", "{6B19035E-E33C-4DAD-BD06-8D4F828A04B3}"
 	ProjectSection(ProjectDependencies) = postProject
+		{DCDBBB3E-1E08-492A-8BB2-07F378AF1B37} = {DCDBBB3E-1E08-492A-8BB2-07F378AF1B37}
 		{F30456FA-47AA-4073-B57E-E12578847858} = {F30456FA-47AA-4073-B57E-E12578847858}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeControlService", "UserInfoService\TimeControlService.csproj", "{F30456FA-47AA-4073-B57E-E12578847858}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{DCDBBB3E-1E08-492A-8BB2-07F378AF1B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\UserService.csproj", "{DCDBBB3E-1E08-492A-8BB2-07F378AF1B37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

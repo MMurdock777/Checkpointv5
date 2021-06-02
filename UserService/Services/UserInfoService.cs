@@ -98,5 +98,29 @@ namespace UserService.Services
 
             };
         }
+
+        public override Task<LoginReply> Login(LoginRequest request, ServerCallContext context)
+        {
+            using (var connection = new SqlConnection("Server = 192.168.1.83; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
+            {
+                var command = new SqlCommand($"SELECT * FROM dbo.UserInfo WHERE Login = '{request.Login}' AND Password = '{request.Password}' ", connection);
+                command.Connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        return Task.FromResult(new LoginReply
+                        {
+                            Success = true
+                        }) ;
+                        
+                    }
+                }
+            };
+            return Task.FromResult(new LoginReply
+            {
+                Success = false
+            }) ;
+        }
     }
 }
