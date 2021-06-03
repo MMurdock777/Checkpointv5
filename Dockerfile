@@ -6,7 +6,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["KekpointCool/KekpointCool.csproj", "KekpointCool/"]
-COPY ["UserInfoService/TimeControl.csproj", "UserInfoService/"]
+COPY ["UserInfoService/TimeControlService.csproj", "UserInfoService/"]
 COPY ["UserService/UserService.csproj", "UserService/"]
 RUN dotnet restore "KekpointCool/KekpointCool.csproj"
 
