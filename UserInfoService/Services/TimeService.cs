@@ -18,7 +18,7 @@ namespace TimeControlService.Services
 
         public override Task<TimeOkReply> TimeIn(TimeRequest request, ServerCallContext context)
         {
-            using (var connection = new SqlConnection("Server = 192.168.1.83; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
+            using (var connection = new SqlConnection("Server = 95.165.129.223; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
             {
                 string format = "yyyy.MM.dd HH:mm:ss";
                 var command = new SqlCommand($"INSERT INTO dbo.TimeIn (ID, TimeIn) VALUES ('{request.Userid}', '{request.Timestamp.ToDateTime().ToString(format)}') ", connection);
@@ -33,7 +33,7 @@ namespace TimeControlService.Services
         }
         public override Task<TimeOkReply> TimeOut(TimeRequest request, ServerCallContext context)
         {
-            using (var connection = new SqlConnection("Server = 192.168.1.83; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
+            using (var connection = new SqlConnection("Server = 95.165.129.223; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
             {
                 string format = "yyyy.MM.dd HH:mm:ss";
                 var command = new SqlCommand($"INSERT INTO dbo.TimeOut (ID, TimeOut) VALUES ('{request.Userid}', '{request.Timestamp.ToDateTime().ToString(format)}') ", connection);

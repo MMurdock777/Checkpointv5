@@ -17,7 +17,7 @@ namespace KekpointCool.Controllers
         [Authorize]
         public async Task<IActionResult> GetUsers(Guid ID)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5003");
+            var channel = GrpcChannel.ForAddress("http://localhost:5002");
             var client = new UserInfo.UserInfoClient(channel);
             try
             {
@@ -47,7 +47,7 @@ namespace KekpointCool.Controllers
         [Authorize]
         public async Task<IActionResult> SetUser([FromBody] User user)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5003");
+            var channel = GrpcChannel.ForAddress("http://localhost:5002");
             var client = new UserInfo.UserInfoClient(channel);
             try
             {

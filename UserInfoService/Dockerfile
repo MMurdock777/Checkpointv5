@@ -10,10 +10,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["TimeControlService/TimeControlService.csproj", "TimeControlService/"]
-RUN dotnet restore "TimeControlService/TimeControlService.csproj"
+COPY ["UserInfoService/TimeControlService.csproj", "UserInfoService/"]
+RUN dotnet restore "UserInfoService/TimeControlService.csproj"
 COPY . .
-WORKDIR "/src/TimeControlService"
+WORKDIR "/src/UserInfoService"
 RUN dotnet build "TimeControlService.csproj" -c Release -o /app/build
 
 FROM build AS publish

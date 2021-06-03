@@ -18,7 +18,7 @@ namespace KekpointCool.Controllers
         [Authorize]
         public async Task<IActionResult> Timein(Guid ID)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("http://localhost:5000");
             var client = new Time.TimeClient(channel);
             try
             {
@@ -40,7 +40,7 @@ namespace KekpointCool.Controllers
         [Authorize]
         public async Task<IActionResult> Timeout(Guid ID)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("https://localhost:5000");
             var client = new Time.TimeClient(channel);
             try
             {

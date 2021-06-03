@@ -37,7 +37,7 @@ namespace KekpointCool.Controllers
             if (ModelState.IsValid)
             {
   
-                var channel = GrpcChannel.ForAddress("https://localhost:5003");
+                var channel = GrpcChannel.ForAddress("http://localhost:5002");
                 var client = new UserInfo.UserInfoClient(channel);
                 try
                 {
