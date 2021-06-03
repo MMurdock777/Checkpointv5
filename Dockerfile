@@ -23,8 +23,7 @@ RUN dotnet build "UserService.csproj" -c Release -o /app/build
 
 
 FROM build AS publish
-RUN dotnet publish "KekpointCool.csproj" -c Release -o /app/publish
-RUN dotnet publish "TimeControlService.csproj" -c Release -o /app/publish
+
 RUN dotnet publish "UserService.csproj" -c Release -o /app/publish
 
 FROM base AS final
