@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  kekpointcool:
-    image: ${DOCKER_REGISTRY-}kekpointcool
-    build:
-      context: .
-      dockerfile: KekpointCool\Dockerfile
