@@ -85,6 +85,7 @@ namespace UserService.Services
                         //command.Connection.Open();
                         int number = command.ExecuteNonQuery();
                         command.Connection.Close();
+
                         return Task.FromResult(new SetUserReply
                         {
                             Message = $"Добавлено объектов: {number}"
