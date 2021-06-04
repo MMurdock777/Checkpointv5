@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.SqlClient; 
+using System.Data.SqlClient;
+
 
 namespace TimeControlService.Services
 {
@@ -44,6 +45,56 @@ namespace TimeControlService.Services
                 {
                     Message = $"Добавлено объектов: {number}"
                 });
+            }
+
+        }
+        public override Task<GetTimeReply> GetTime(GetTimeRequest request, ServerCallContext context)
+        {
+            using (var connection = new SqlConnection("Server = 95.165.129.223; Database = CheckpointDB; User ID = server; Password = 1580; Trusted_Connection = False; Encrypt = True; Connection Timeout = 2400; MultipleActiveResultSets = True; trustServerCertificate = True; "))
+            {
+                var command = new SqlCommand($"SELECT TOP(1) dbo.Timein.ID,  TimeIn FROM dbo.Timein WHERE dbo.Timein.ID = '{request.Userid}' ORDER BY TimeIn DESC", connection);
+                command.Connection.Open();
+                string ID = "";
+                string Timein = "";
+                string Timeout = "";
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+
+                            ID = (string)reader.GetValue(0).ToString();
+                            Timein = (string)reader.GetValue(1).ToString();
+
+
+            
+                        }
+                        
+                    }
+                    
+                }
+                command.Connection.Close();
+                command = new SqlCommand($"SELECT TOP(1) TimeOut FROM dbo.Timeout WHERE dbo.Timeout.ID = '{request.Userid}' ORDER BY TimeOut DESC", connection);
+                command.Connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            Timeout = (string)reader.GetValue(0).ToString();
+
+                        }
+                    }
+                    return Task.FromResult(new GetTimeReply
+                    {
+                        ID = ID,
+                        Timein = Timein,
+                        Timeout = Timeout
+                    });
+
+                }
             }
 
         }

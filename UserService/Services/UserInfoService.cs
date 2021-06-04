@@ -91,10 +91,6 @@ namespace UserService.Services
                         });
                     }
                 }
-                return Task.FromResult(new SetUserReply
-                {
-                    Message = $"ok"
-                });
 
             };
         }

@@ -12,10 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sentry.AspNetCore;
 
 
 
-namespace KekpointCool
+namespace Checkpoint
 {
     public class Startup
     {
@@ -46,7 +47,7 @@ namespace KekpointCool
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "KekpointCool", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Checkpoint", Version = "v1" });
             });
         }
 
@@ -57,12 +58,14 @@ namespace KekpointCool
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KekpointCool v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Checkpoint v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSentryTracing();
 
             app.UseAuthentication();
 

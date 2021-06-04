@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "KekpointCool": {
+    "Checkpoint": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

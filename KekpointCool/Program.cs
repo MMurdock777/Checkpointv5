@@ -6,8 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sentry.AspNetCore;
 
-namespace KekpointCool
+namespace Checkpoint
 {
     public class Program
     {
@@ -20,7 +21,15 @@ namespace KekpointCool
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSentry(o =>
+                    {
+                        o.Dsn = "https://5411abe2d71842a3aacf8a7f15893296@o788291.ingest.sentry.io/5799836";
+                        // When configuring for the first time, to see what the SDK is doing:
+                        o.Debug = true;
+                        // Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
+                        // We recommend adjusting this value in production.
+                        o.TracesSampleRate = 1.0;
+                    }).UseStartup<Startup>() ;
                 });
     }
 }

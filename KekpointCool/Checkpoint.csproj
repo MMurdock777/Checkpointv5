@@ -20,11 +20,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\time.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\time.proto" />
     <Protobuf Include="Protos\users.proto" GrpcServices="Client" />
   </ItemGroup>
 

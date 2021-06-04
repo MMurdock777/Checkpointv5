@@ -2,12 +2,12 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
-option csharp_namespace = "KekpointCool";
+option csharp_namespace = "Checkpoint";
 
 service Time {
-
   rpc TimeIn (TimeRequest) returns (TimeOkReply);
   rpc TimeOut (TimeRequest) returns (TimeOkReply);
+  rpc GetTime (GetTimeRequest) returns (GetTimeReply);
 }
 
 message TimeOkReply{
@@ -17,5 +17,13 @@ message TimeOkReply{
 message TimeRequest{
   string userid =  1;
   google.protobuf.Timestamp timestamp = 2;
-  
+  }
+
+message GetTimeRequest{
+	string userid = 1;
+  }
+message GetTimeReply{
+  string ID = 1;
+  string Timein = 2;
+  string Timeout = 3;
 }
