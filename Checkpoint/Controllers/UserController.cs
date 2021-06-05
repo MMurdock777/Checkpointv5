@@ -58,7 +58,7 @@ namespace Checkpoint.Controllers
 
         }
 
-        [HttpPost, HttpOptions]
+        [HttpPut, HttpOptions]
         [Route("~/setuser")]
         [Authorize]
         public async Task<IActionResult> SetUser([FromBody] Models.User user)
